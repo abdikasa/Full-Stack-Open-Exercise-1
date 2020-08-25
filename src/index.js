@@ -23,7 +23,26 @@ const App = () => {
     ],
   };
 
-  return <div>...</div>;
+  return (
+    <div>
+      <h1>{course.name}</h1>
+      <p>
+        {course.parts[0].name} : {course.parts[0].exercises}
+      </p>
+      <p>
+        {course.parts[1].name} : {course.parts[1].exercises}
+      </p>
+      <p>
+        {course.parts[2].name} : {course.parts[2].exercises}
+      </p>
+      <p>
+        Total exercises :{" "}
+        {course.parts.reduce((a, b) => {
+          return (a += b.exercises);
+        }, 0)}
+      </p>
+    </div>
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
