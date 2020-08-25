@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// 1.1: course information, step1
-// Unfortunately, the entire application is in the same component. Refactor the code so that it consists of three new components: Header, Content, and Total. All data still resides in the App component, which passes the necessary data to each component using props. Header takes care of rendering the name of the course, Content renders the parts and their number of exercises and Total renders the total number of exercises.
+// 1.2: course information, step2
+// Refactor the Content component so that it does not render any names of parts or their number of exercises by itself. Instead it only renders three Part components of which each renders the name and number of exercises of one part.
 
 const Header = (prop) => (
   <>
@@ -10,22 +10,22 @@ const Header = (prop) => (
   </>
 );
 
-const Content = () => {
-  const part1 = "Fundamentals of React";
-  const part2 = "Using props to pass data";
-  const part3 = "State of a component";
-  const total = [10, 7, 14];
+const Part = (prop) => {
   return (
     <>
       <p>
-        {part1}: {total[0]}
+        {prop.title}: {prop.total}
       </p>
-      <p>
-        {part2}: {total[1]}
-      </p>
-      <p>
-        {part3}: {total[2]}
-      </p>
+    </>
+  );
+};
+
+const Content = () => {
+  return (
+    <>
+      <Part title="Fundamentals of React" total="10" />
+      <Part title="Using props to pass data" total="7" />
+      <Part title="State of a component" total="14" />
     </>
   );
 };
@@ -43,13 +43,6 @@ const Total = (prop) => {
 
 const App = () => {
   const course = "Half Stack application development";
-  const part1 = "Fundamentals of React";
-  const exercises1 = 10;
-  const part2 = "Using props to pass data";
-  const exercises2 = 7;
-  const part3 = "State of a component";
-  const exercises3 = 14;
-
   return (
     <>
       <Header course={course} />
