@@ -1,26 +1,33 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-const Display = (prop) => {
-  return <div>{prop.counter}</div>;
-};
+const App = (props) => {
+  const [clicks, setClicks] = useState({ left: 0, right: 0 });
 
-const Button = (prop) => {
-  return <button onClick={prop.click}>{prop.text}</button>;
-};
+  const leftClick = () => {
+    const newClicks = {
+      left: clicks.left + 1,
+      right: clicks.right,
+    };
+    setClicks(newClicks);
+  };
 
-const App = () => {
-  //start at 0, use deconstruction
-  const [counter, setCounter] = useState(0);
-
-  const increment = () => setCounter(counter + 1);
-  const reset = () => setCounter(0);
+  const rightClick = () => {
+    const newClicks = {
+      left: clicks.left,
+      right: clicks.right + 1,
+    };
+    setClicks(newClicks);
+  };
 
   return (
     <div>
-      <Display counter={counter} />
-      <Button click={increment} text="Increment"></Button>
-      <Button click={reset} text="Reset"></Button>
+      <div>
+        {clicks.left}
+        <button onClick={leftClick}>left</button>
+        <button onClick={rightClick}>right</button>
+        {clicks.right}
+      </div>
     </div>
   );
 };
