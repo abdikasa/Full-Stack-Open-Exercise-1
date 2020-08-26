@@ -16,6 +16,10 @@ const History = (props) => {
   );
 };
 
+const Button = ({ onClick, label }) => (
+  <button onClick={onClick}>{label}</button>
+);
+
 const App = (props) => {
   const [left, setLeft] = useState(0);
   const [right, setRight] = useState(0);
@@ -35,9 +39,9 @@ const App = (props) => {
     <div>
       <div>
         {left}
-        <button onClick={handleLeft}>Left</button>
+        <Button label="Left" onClick={handleLeft} />
         {right}
-        <button onClick={handleRight}>Right</button>
+        <Button label="Right" onClick={handleRight} />
         <History allClicks={allClicks} />
       </div>
     </div>
